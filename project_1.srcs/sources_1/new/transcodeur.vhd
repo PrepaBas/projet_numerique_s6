@@ -40,7 +40,5 @@ begin
          "0110000" when 3,   --3
          "0011001" when others;   --4
 
-
-end process;
 end Behavioral;
 
