@@ -17,7 +17,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity Mux4 is
     Port ( 
-    clk : in STD_LOGIC;
+    cmd : in STD_LOGIC_VECTOR (1 downto 0);
     A0 : in STD_LOGIC_VECTOR (6 downto 0);
     A1 : in STD_LOGIC_VECTOR (6 downto 0);
     A2 : in STD_LOGIC_VECTOR (6 downto 0);
@@ -27,30 +27,12 @@ end Mux4;
 
 architecture Behavioral of Mux4 is
 
-signal rang : natural range 0 to 3 := 0;
-
 begin
-    process(clk)
-    begin
-        if (clk'event and clk='1') then
-            if (rang =0) then 
-                Affiche <= A0;
-                rang <= 1;
-            elsif (rang = 1) then
-                Affiche <= A1;
-                rang <= 2;
-            elsif (rang = 2) then
-                Affiche <= A2;
-                rang <= 3;
-            elsif (rang = 3) then
-                Affiche <= A3;
-                rang <= 0;
-            end if ;
-        end if;
-         
-        
-end process;
-
+    with cmd select 
+    Affiche<= A0 when "00",
+    A1 when "01",
+    A2 when "10",
+    A3 when "11";
 
 end Behavioral;
 
