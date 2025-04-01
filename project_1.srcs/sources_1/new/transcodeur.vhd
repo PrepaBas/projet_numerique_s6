@@ -1,3 +1,11 @@
+
+
+
+
+--en gros ici on prend un entier entre 1 et 49 et on le code en séparant la dixaine sur a1 et l'unité sur a0 de telle sorte que le mux 4 puisse choisir lequel afficher
+
+
+
 library iEEE;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
