@@ -43,7 +43,8 @@ begin
          "1000000" when others;   --0
          
     with DIX select
-       A1<= "1111001" when 1,   --1
+       A1<= "1000000" when 0,
+       "1111001" when 1,   --1
          "0100100" when 2,   --2
          "0110000" when 3,   --3
          "0011001" when others;   --4
