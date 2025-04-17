@@ -18,13 +18,16 @@ entity mod6 is
 end mod6;
 
 architecture Behavioral of mod6 is
+    constant cycle : integer := 6;
+    
+    signal compteurCycle : natural range 1 to cycle := 0;
 begin
     process(c_e_slow, horloge)
     begin
     if (raz = '0') then
-        if (bouton = '0' and horloge' event and c_e_slow = '1' and horloge = '1') then
+        if (bouton = '1' and horloge' event) then
             sortie <= entree;
-            with entre select
+            with entree select
                 sortieSeptSeg<= "1111001" when 1,   --1
                 "0100100" when 2,   --2
                 "0110000" when 3,   --3
@@ -32,13 +35,17 @@ begin
                 "0010010" when 5,   --5
                 "0000010" when others;   --6
                 
-        elsif (bouton' event and bouton = '1') then
-        
+        elsif (bouton = '0' and c_e_slow' event and c_e_slow = '1' and horloge = '1') then
+            if (compteurCycle = 6) then
+                compteurCycle <= 1;
+            else
+                compteurCycle <= compteurCycle +1;
+            end if;
+        sortie <= compteurCycle;
         end if;
-
-     else then
-        sortie<=0;
-        sortieSeptSeg<=0;   
+    else
+        sortie <= 1 ;
+        sortieSeptSeg<="1111001";   
     end if;
 end process;
 end Behavioral;
