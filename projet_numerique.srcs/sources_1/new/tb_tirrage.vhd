@@ -50,5 +50,5 @@ begin
     button<= not button after 50 ns;
     ledV<= '1' after 610 ns;
     ledR<= '1' after 620 ns;
-    reset<='1' after 500 ns;
+    reset<='1' after 500 ns;    
 end Behavioral;
